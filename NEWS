@@ -1,5 +1,45 @@
 Eio 1.8.0
 
+Eio 1.7.6
+
+Changes since Eio 1.7.5:
+------------------------
+
+Fixes:
+	* Fix wrongly set container in eio_file_map_new.
+
+Eio 1.7.5
+
+Changes since Eio 1.7.4:
+------------------------
+
+Add:
+	* Add eio_eet_sync symbol.
+
+Fixes:
+        * Functions no longer crash when passed NULL and throw errors accordingly
+
+Eio 1.7.4
+
+Changes since Eio 1.7.3:
+------------------------
+
+Fixes:
+        - Fixed crash in eio_monitor_del.
+	- Properly destroy fd on exec.
+
+Eio 1.7.3
+
+Changes since Eio 1.7.2:
+------------------------
+
+Fixes:
+	- Fix build on Solaris.
+	- Don't leak fd on exec.
+	- Don't stop on limited access right.
+
+Eio 1.7.2
+
 Changes since Eio 1.7.0:
 -------------------------
 
@@ -16,6 +56,10 @@ Improvements:
 Removal:
 
 Eio 1.7.0
+
+Fixes:
+        - Fix memory corruption by allocating enough memory in
+        eio_eet_data_read_cipher().
 
 Changes since Eio 1.0.0:
 -------------------------

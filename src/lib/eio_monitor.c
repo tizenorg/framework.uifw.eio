@@ -266,6 +266,7 @@ eio_monitor_add(const char *path)
    const char *tmp;
    Eio_Monitor *ret;
 
+   EINA_SAFETY_ON_NULL_RETURN_VAL(path, NULL);
    tmp = eina_stringshare_add(path);
    ret = eio_monitor_stringshared_add(tmp);
    eina_stringshare_del(tmp);
@@ -278,6 +279,7 @@ eio_monitor_stringshared_add(const char *path)
    Eio_Monitor *monitor;
    struct stat st;
 
+   EINA_SAFETY_ON_NULL_RETURN_VAL(path, NULL);
    if (_monitor_pid == -1) return NULL;
 
    if (_monitor_pid != getpid())
@@ -339,6 +341,7 @@ eio_monitor_stringshared_add(const char *path)
 EAPI void
 eio_monitor_del(Eio_Monitor *monitor)
 {
+   if (!monitor) return;
    EINA_REFCOUNT_UNREF(monitor)
      _eio_monitor_free(monitor);
 }
