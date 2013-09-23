@@ -42,6 +42,8 @@ make %{?jobs:-j%jobs}
 %install
 rm -rf %{buildroot}
 %make_install
+mkdir -p %{buildroot}/usr/share/license
+cp %{_builddir}/%{buildsubdir}/COPYING %{buildroot}/usr/share/license/%{name}
 
 %post -p /sbin/ldconfig
 
@@ -50,6 +52,7 @@ rm -rf %{buildroot}
 %files
 %defattr(-, root, root)
 /usr/lib/libeio*
+/usr/share/license/%{name}
 %manifest %{name}.manifest
 
 %files devel
