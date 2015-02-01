@@ -1,9 +1,6 @@
-%{!?_rel:%{expand:%%global _rel 0.enl%{?dist}}}
-%define _missing_doc_files_terminate_build 0
-
 Name: eio
 Summary: Enlightenment Input/Output Library
-Version: 1.7.1+svn.77392+build01
+Version: 1.7.1+svn.77392+build04
 Release: 1
 License: LGPLv2.1
 Group: System Environment/Libraries
@@ -16,23 +13,28 @@ BuildRequires:  eina-devel
 BuildRequires:  eet-devel
 BuildRequires:  ecore-devel
 
+
 %description
 Enlightenment input/output library
+
 
 %package devel
 Summary: EIO headers, static libraries, documentation and test programs
 Group: System Environment/Libraries
 Requires: %{name} = %{version}-%{release}
 
+
 %description devel
 Headers, static libraries, test programs and documentation for EIO
+
 
 %prep
 %setup -q
 
+
 %build
-export CFLAGS+=" -fPIC -Wall"
-export LDFLAGS+=" -Wl,--hash-style=both -Wl,--as-needed"
+export CFLAGS+=" -fvisibility=hidden -fPIC -Wall"
+export LDFLAGS+=" -fvisibility=hidden -Wl,--hash-style=both -Wl,--as-needed"
 
 %autogen
 
@@ -50,7 +52,7 @@ cp %{_builddir}/%{buildsubdir}/COPYING %{buildroot}/usr/share/license/%{name}
 
 %files
 %defattr(-, root, root)
-/usr/lib/libeio*
+/usr/lib/*.so.*
 %manifest %{name}.manifest
 /usr/share/license/%{name}
 
@@ -59,5 +61,3 @@ cp %{_builddir}/%{buildsubdir}/COPYING %{buildroot}/usr/share/license/%{name}
 /usr/include/*
 /usr/lib/libeio.so
 /usr/lib/pkgconfig/eio.pc
-
-%changelog

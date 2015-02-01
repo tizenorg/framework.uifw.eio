@@ -350,7 +350,7 @@ _eio_dir_chmod(Ecore_Thread *thread, Eio_Dir_Copy *order,
  on_error:
    eio_file_thread_error(&order->progress.common, thread);
  on_cancel:
-   if (dir) eina_stringshare_del(dir);
+   eina_stringshare_del(dir);
    return EINA_FALSE;
 }
 
